@@ -142,7 +142,7 @@ fi
 # Success message
 echo ""
 echo -e "${GREEN}╔══════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║${NC}  ${GREEN}✓ fract installed successfully!${NC}    ${GREEN}║${NC}"
+echo -e "${GREEN}║${NC}  ${GREEN}✓ fract installed successfully!${NC}     ${GREEN}║${NC}"
 echo -e "${GREEN}╚══════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${CYAN}Get started with:${NC}"
