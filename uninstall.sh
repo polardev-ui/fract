@@ -53,11 +53,30 @@ elif [ -n "$ZSH_VERSION" ]; then
     SHELL_CONFIG="$HOME/.zshrc"
 fi
 
+# Clean up shell config
+SHELL_CONFIG=""
+if [ -n "$BASH_VERSION" ]; then
+    SHELL_CONFIG="$HOME/.bashrc"
+elif [ -n "$ZSH_VERSION" ]; then
+    SHELL_CONFIG="$HOME/.zshrc"
+fi
+
 if [ -n "$SHELL_CONFIG" ] && [ -f "$SHELL_CONFIG" ]; then
     if grep -q "# fract package manager" "$SHELL_CONFIG"; then
-        # Remove fract PATH entry
-        sed -i.bak '/# fract package manager/,+1d' "$SHELL_CONFIG"
-        rm -f "$SHELL_CONFIG.bak"
+        echo -e "${CYAN}→ Cleaning up shell configuration...${NC}"
+
+        # Determine the correct sed -i flag for cross-platform compatibility
+        # BSD sed (macOS) requires an argument for -i, even if it's empty.
+        # GNU sed (Linux) is happy either way.
+        if sed -i '' '/# fract package manager/,+1d' "$SHELL_CONFIG" 2>/dev/null; then
+            # macOS sed was successful (used -i '')
+            true
+        else
+            # Fallback for GNU sed (or failed attempt)
+            sed -i.bak '/# fract package manager/,+1d' "$SHELL_CONFIG"
+            rm -f "$SHELL_CONFIG.bak" 2>/dev/null
+        fi
+
         echo -e "${GREEN}✓ Cleaned up shell configuration${NC}"
     fi
 fi
