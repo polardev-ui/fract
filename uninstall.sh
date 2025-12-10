@@ -53,14 +53,6 @@ elif [ -n "$ZSH_VERSION" ]; then
     SHELL_CONFIG="$HOME/.zshrc"
 fi
 
-# Clean up shell config
-SHELL_CONFIG=""
-if [ -n "$BASH_VERSION" ]; then
-    SHELL_CONFIG="$HOME/.bashrc"
-elif [ -n "$ZSH_VERSION" ]; then
-    SHELL_CONFIG="$HOME/.zshrc"
-fi
-
 if [ -n "$SHELL_CONFIG" ] && [ -f "$SHELL_CONFIG" ]; then
     if grep -q "# fract package manager" "$SHELL_CONFIG"; then
         echo -e "${CYAN}→ Cleaning up shell configuration...${NC}"
