@@ -8,23 +8,23 @@ A modern package manager with beautiful terminal animations.
 
 Install fract using curl:
 
-\`\`\`bash
+```bash
 curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-\`\`\`
+```
 
 Or with wget:
 
-\`\`\`bash
+```bash
 wget -qO- https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-\`\`\`
+```
 
 ### Windows
 
 Install fract using PowerShell (run as Administrator):
 
-\`\`\`powershell
+```powershell
 iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/install.ps1 | iex
-\`\`\`
+```
 
 **Note:** After installation, restart your terminal for the PATH changes to take effect.
 
@@ -32,61 +32,66 @@ iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/install.ps1 |
 
 ### Install a package
 
-\`\`\`bash
+```bash
 fract install <package-name>
 # or
 fract i <package-name>
-\`\`\`
+```
 
 Install globally:
 
-\`\`\`bash
+```bash
 fract install <package-name> --global
 # or
 fract i <package-name> -g
-\`\`\`
+```
 
 ### Uninstall a package
 
-\`\`\`bash
+```bash
 fract uninstall <package-name>
 # or
 fract remove <package-name>
-\`\`\`
+```
 
 ### List installed packages
 
-\`\`\`bash
+```bash
 fract list
 # or
 fract ls
-\`\`\`
+```
 
 ### Search for packages
 
-\`\`\`bash
+```bash
 fract search <query>
-\`\`\`
+```
 
 ### Update a package
 
-\`\`\`bash
+```bash
 fract update <package-name>
-\`\`\`
+```
+
+### Updating Fract
+```bash
+fract self-update
+```
 
 ## Uninstallation
 
 ### Linux / macOS
 
-\`\`\`bash
+```bash
 curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.sh | bash
-\`\`\`
+```
 
 ### Windows
 
-\`\`\`powershell
+```powershell
 iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.ps1 | iex
-\`\`\`
+```
 
 ## Features
 
@@ -113,6 +118,6 @@ Built by [Polar](https://github.com/polardev-ui)
 ## License
 
 MIT
-\`\`\`
+```
 
 ```tsx file="" isHidden
