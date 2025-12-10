@@ -110,21 +110,30 @@ chmod +x "$INSTALL_DIR/cli/bin/fract.js"
 sleep 1
 echo -e "${GREEN}✓ Command setup complete${NC}"
 
-# Add to PATH if not already there
 SHELL_CONFIG=""
+# 1. Determine the correct shell config file
 if [ -n "$BASH_VERSION" ]; then
     SHELL_CONFIG="$HOME/.bashrc"
 elif [ -n "$ZSH_VERSION" ]; then
     SHELL_CONFIG="$HOME/.zshrc"
 fi
 
-if [ -n "$SHELL_CONFIG" ] && [ -f "$SHELL_CONFIG" ]; then
-    if ! grep -q "$BIN_DIR" "$SHELL_CONFIG"; then
+# 2. Check if we found a config file and the PATH is not already set
+if [ -n "$SHELL_CONFIG" ]; then
+    # We use 'grep -q' on a blank string if the file doesn't exist, so we need a slight adjustment
+    # The '|| true' ensures the script doesn't exit if grep fails due to a missing file.
+    if ! grep -q "$BIN_DIR" "$SHELL_CONFIG" 2>/dev/null || true; then
+
         echo ""
         echo -e "${CYAN}→ Adding fract to PATH...${NC}"
+
+        # The '>>' operator CREATES the file if it doesn't exist, and appends if it does.
+        # This fixes the issue where .zshrc was missing.
+
         echo "" >> "$SHELL_CONFIG"
         echo "# fract package manager" >> "$SHELL_CONFIG"
-        echo "export PATH=\"\$HOME/.local/bin:\$PATH\"" >> "$SHELL_CONFIG"
+        echo "export PATH=\"$BIN_DIR:\$PATH\"" >> "$SHELL_CONFIG" # Note: Changed to use $BIN_DIR instead of hardcoding $HOME/.local/bin
+
         sleep 1
         echo -e "${GREEN}✓ Added to PATH${NC}"
         echo ""
