@@ -8,6 +8,8 @@ import { uninstall } from "../lib/uninstall.js"
 import { list } from "../lib/list.js"
 import { search } from "../lib/search.js"
 import { update } from "../lib/update.js"
+import { selfUpdate } from "../lib/self-update.js"
+import { checkForUpdates, showUpdateNotification } from "../lib/version-check.js"
 
 const version = "1.0.0"
 
@@ -29,6 +31,8 @@ program
   .option("-g, --global", "Install package globally")
   .action(async (packageName, options) => {
     await install(packageName, options)
+    const latestVersion = await checkForUpdates(version)
+    if (latestVersion) showUpdateNotification(latestVersion)
   })
 
 program
@@ -38,6 +42,8 @@ program
   .option("-g, --global", "Uninstall package globally")
   .action(async (packageName, options) => {
     await uninstall(packageName, options)
+    const latestVersion = await checkForUpdates(version)
+    if (latestVersion) showUpdateNotification(latestVersion)
   })
 
 program
@@ -46,6 +52,8 @@ program
   .description("List installed packages")
   .action(async () => {
     await list()
+    const latestVersion = await checkForUpdates(version)
+    if (latestVersion) showUpdateNotification(latestVersion)
   })
 
 program
@@ -53,6 +61,8 @@ program
   .description("Search for packages")
   .action(async (query) => {
     await search(query)
+    const latestVersion = await checkForUpdates(version)
+    if (latestVersion) showUpdateNotification(latestVersion)
   })
 
 program
@@ -60,6 +70,16 @@ program
   .description("Update a package")
   .action(async (packageName) => {
     await update(packageName)
+    const latestVersion = await checkForUpdates(version)
+    if (latestVersion) showUpdateNotification(latestVersion)
+  })
+
+program
+  .command("self-update")
+  .alias("upgrade")
+  .description("Update fract to the latest version")
+  .action(async () => {
+    await selfUpdate()
   })
 
 program.parse(process.argv)
