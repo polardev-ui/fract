@@ -62,8 +62,7 @@ fi
 if curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz; then
     tar -xzf fract.tar.gz
     
-    if [ -d "fract-main" ] && [ -f "fract-main/package.json" ]; then
-        echo -e "${CYAN}  Found CLI files in fract-main root${NC}"
+    if [ -d "fract-main" ] && [ -d "fract-main/bin" ] && [ -d "fract-main/lib" ] && [ -f "fract-main/package.json" ]; then
         mkdir -p "$INSTALL_DIR/cli"
         
         # Copy CLI files to the installation directory
@@ -73,12 +72,14 @@ if curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract
         
         rm -rf fract-main fract.tar.gz
     else
-        echo -e "${RED}Error: CLI files not found in archive${NC}"
-        echo -e "${RED}Contents of current directory:${NC}"
-        ls -la || true
+        echo -e "${RED}Error: CLI files not found${NC}"
+        echo -e "${RED}Expected structure: fract-main/bin, fract-main/lib, fract-main/package.json${NC}"
+        echo ""
+        echo -e "${RED}What we found:${NC}"
         if [ -d "fract-main" ]; then
-            echo -e "${RED}Contents of fract-main:${NC}"
-            ls -la fract-main/ || true
+            ls -la fract-main/ 2>&1 | head -20
+        else
+            echo "fract-main directory doesn't exist"
         fi
         rm -rf fract-main fract.tar.gz
         exit 1
