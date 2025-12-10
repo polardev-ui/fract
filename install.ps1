@@ -15,7 +15,7 @@ function Write-Red { Write-Host $args -ForegroundColor Red }
 
 Write-Host ""
 Write-Cyan "╔══════════════════════════════════════╗"
-Write-Cyan "║  fract installer                   ║"
+Write-Cyan "║  fract installer                     ║"
 Write-Cyan "╚══════════════════════════════════════╝"
 Write-Host ""
 
@@ -127,7 +127,7 @@ if ($userPath -notlike "*$BIN_DIR*") {
 # Success message
 Write-Host ""
 Write-Green "╔══════════════════════════════════════╗"
-Write-Green "║  ✓ fract installed successfully!    ║"
+Write-Green "║  ✓ fract installed successfully!     ║"
 Write-Green "╚══════════════════════════════════════╝"
 Write-Host ""
 Write-Cyan "Get started with:"

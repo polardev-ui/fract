@@ -17,7 +17,7 @@ NC='\033[0m' # No Color
 
 echo ""
 echo -e "${YELLOW}╔══════════════════════════════════════╗${NC}"
-echo -e "${YELLOW}║${NC}  fract uninstaller                   ${YELLOW}║${NC}"
+echo -e "${YELLOW}║${NC}  fract uninstaller                     ${YELLOW}║${NC}"
 echo -e "${YELLOW}╚══════════════════════════════════════╝${NC}"
 echo ""
 
