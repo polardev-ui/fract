@@ -52,20 +52,52 @@ echo ""
 echo -e "${CYAN}→ Downloading fract...${NC}"
 cd "$INSTALL_DIR"
 
-# Clone or download from GitHub
 if command -v git &> /dev/null; then
     if [ -d "$INSTALL_DIR/cli" ]; then
         rm -rf "$INSTALL_DIR/cli"
     fi
-    git clone --depth 1 "https://github.com/$REPO.git" temp_download 2>&1 | grep -v "Cloning" || true
-    mv temp_download/cli "$INSTALL_DIR/"
-    rm -rf temp_download
+    # Try to clone the repository
+    if git clone --depth 1 "https://github.com/$REPO.git" temp_download > /dev/null 2>&1; then
+        if [ -d "temp_download/cli" ]; then
+            mv temp_download/cli "$INSTALL_DIR/"
+            rm -rf temp_download
+        else
+            echo -e "${RED}Error: cli directory not found in repository${NC}"
+            exit 1
+        fi
+    else
+        echo -e "${YELLOW}Git clone failed, trying curl...${NC}"
+        # Fallback to curl
+        if curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz; then
+            tar -xzf fract.tar.gz
+            if [ -d "fract-main/cli" ]; then
+                mv fract-main/cli "$INSTALL_DIR/"
+                rm -rf fract-main fract.tar.gz
+            else
+                echo -e "${RED}Error: cli directory not found in downloaded archive${NC}"
+                exit 1
+            fi
+        else
+            echo -e "${RED}Error: Failed to download fract${NC}"
+            echo "Please check your internet connection and try again"
+            exit 1
+        fi
+    fi
 else
     # Fallback to curl if git is not available
-    curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz
+    if ! curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz; then
+        echo -e "${RED}Error: Failed to download fract${NC}"
+        echo "Please check your internet connection and try again"
+        exit 1
+    fi
     tar -xzf fract.tar.gz
-    mv fract-main/cli "$INSTALL_DIR/"
-    rm -rf fract-main fract.tar.gz
+    if [ -d "fract-main/cli" ]; then
+        mv fract-main/cli "$INSTALL_DIR/"
+        rm -rf fract-main fract.tar.gz
+    else
+        echo -e "${RED}Error: cli directory not found in downloaded archive${NC}"
+        exit 1
+    fi
 fi
 
 sleep 1
