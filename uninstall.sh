@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # fract uninstaller script
-# Usage: curl -fsSL https://raw.githubusercontent.com/wsgpolar/fract/main/uninstall.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.sh | bash
 
 set -e
 

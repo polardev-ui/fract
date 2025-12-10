@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # fract installer script
-# Usage: curl -fsSL https://raw.githubusercontent.com/wsgpolar/fract/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
 
-set -e
+set -e 
 
-REPO="wsgpolar/fract"
+REPO="polardev-ui/fract"
 INSTALL_DIR="$HOME/.fract"
 BIN_DIR="$HOME/.local/bin"
 
