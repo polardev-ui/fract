@@ -50,6 +50,7 @@ echo -e "${GREEN}✓ Directories created${NC}"
 # Download the latest release
 echo ""
 echo -e "${CYAN}→ Downloading fract...${NC}"
+
 cd "$INSTALL_DIR"
 
 # Remove old cli directory if it exists
@@ -57,16 +58,25 @@ if [ -d "$INSTALL_DIR/cli" ]; then
     rm -rf "$INSTALL_DIR/cli"
 fi
 
-# Try curl download (more reliable than git clone)
+# Download and extract
 if curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz; then
     tar -xzf fract.tar.gz
-    # GitHub archive creates a folder named "fract-main"
+    
     if [ -d "fract-main/cli" ]; then
+        echo -e "${CYAN}  Found cli in fract-main/cli${NC}"
         mv fract-main/cli "$INSTALL_DIR/"
         rm -rf fract-main fract.tar.gz
-    else
-        echo -e "${RED}Error: cli directory not found in downloaded archive${NC}"
+    elif [ -d "fract-main" ]; then
+        echo -e "${RED}Error: cli directory not found in fract-main/${NC}"
+        echo -e "${RED}Contents of fract-main:${NC}"
+        ls -la fract-main/ || true
         rm -rf fract-main fract.tar.gz
+        exit 1
+    else
+        echo -e "${RED}Error: fract-main directory not found${NC}"
+        echo -e "${RED}Contents of current directory:${NC}"
+        ls -la || true
+        rm -rf fract.tar.gz
         exit 1
     fi
 else
