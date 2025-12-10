@@ -62,21 +62,25 @@ fi
 if curl -fsSL "https://github.com/$REPO/archive/refs/heads/main.tar.gz" -o fract.tar.gz; then
     tar -xzf fract.tar.gz
     
-    if [ -d "fract-main/cli" ]; then
-        echo -e "${CYAN}  Found cli in fract-main/cli${NC}"
-        mv fract-main/cli "$INSTALL_DIR/"
+    if [ -d "fract-main" ] && [ -f "fract-main/package.json" ]; then
+        echo -e "${CYAN}  Found CLI files in fract-main root${NC}"
+        mkdir -p "$INSTALL_DIR/cli"
+        
+        # Copy CLI files to the installation directory
+        cp -r fract-main/bin "$INSTALL_DIR/cli/"
+        cp -r fract-main/lib "$INSTALL_DIR/cli/"
+        cp fract-main/package.json "$INSTALL_DIR/cli/"
+        
         rm -rf fract-main fract.tar.gz
-    elif [ -d "fract-main" ]; then
-        echo -e "${RED}Error: cli directory not found in fract-main/${NC}"
-        echo -e "${RED}Contents of fract-main:${NC}"
-        ls -la fract-main/ || true
-        rm -rf fract-main fract.tar.gz
-        exit 1
     else
-        echo -e "${RED}Error: fract-main directory not found${NC}"
+        echo -e "${RED}Error: CLI files not found in archive${NC}"
         echo -e "${RED}Contents of current directory:${NC}"
         ls -la || true
-        rm -rf fract.tar.gz
+        if [ -d "fract-main" ]; then
+            echo -e "${RED}Contents of fract-main:${NC}"
+            ls -la fract-main/ || true
+        fi
+        rm -rf fract-main fract.tar.gz
         exit 1
     fi
 else
