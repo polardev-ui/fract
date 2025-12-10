@@ -4,72 +4,99 @@ A modern package manager with beautiful terminal animations.
 
 ## Installation
 
-Install fract using the following command:
+### Linux / macOS
 
-```bash
+Install fract using curl:
+
+\`\`\`bash
 curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-```
+\`\`\`
 
 Or with wget:
 
-```bash
+\`\`\`bash
 wget -qO- https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-```
+\`\`\`
+
+### Windows
+
+Install fract using PowerShell (run as Administrator):
+
+\`\`\`powershell
+iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/install.ps1 | iex
+\`\`\`
+
+**Note:** After installation, restart your terminal for the PATH changes to take effect.
 
 ## Usage
 
 ### Install a package
 
-```bash
+\`\`\`bash
 fract install <package-name>
 # or
 fract i <package-name>
-```
+\`\`\`
 
 Install globally:
 
-```bash
+\`\`\`bash
 fract install <package-name> --global
 # or
 fract i <package-name> -g
-```
+\`\`\`
 
 ### Uninstall a package
 
-```bash
+\`\`\`bash
 fract uninstall <package-name>
 # or
 fract remove <package-name>
-```
+\`\`\`
 
 ### List installed packages
 
-```bash
+\`\`\`bash
 fract list
 # or
 fract ls
-```
+\`\`\`
 
 ### Search for packages
 
-```bash
+\`\`\`bash
 fract search <query>
-```
+\`\`\`
 
 ### Update a package
 
-```bash
+\`\`\`bash
 fract update <package-name>
-```
+\`\`\`
+
+## Uninstallation
+
+### Linux / macOS
+
+\`\`\`bash
+curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.sh | bash
+\`\`\`
+
+### Windows
+
+\`\`\`powershell
+iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.ps1 | iex
+\`\`\`
 
 ## Features
 
+- **Cross-platform** - Works on Linux, macOS, and Windows
 - Beautiful terminal animations with custom progress indicators
 - Fast package installation with parallel processing
 - Simple and intuitive commands
 - Local and global package support
 - Live status updates during installation
-- Package registry integration at [fract-cli.vercel.app](https://fract-cli.vercel.app)
+- Package registry integration at [fract.vercel.app](https://fract.vercel.app)
 
 ## Package Terminology
 
@@ -86,3 +113,6 @@ Built by [Polar](https://github.com/polardev-ui)
 ## License
 
 MIT
+\`\`\`
+
+```tsx file="" isHidden
