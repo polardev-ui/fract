@@ -1,6 +1,6 @@
 # fract
 
-A modern package manager with beautiful terminal animations.
+A simple, modern package manager with beautiful terminal animations.
 
 ## Installation
 
