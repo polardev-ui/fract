@@ -98,20 +98,12 @@ echo ""
 echo -e "${CYAN}→ Installing dependencies...${NC}"
 cd "$INSTALL_DIR/cli"
 
-if timeout 120 npm install --loglevel=error 2>&1 | grep -v "^$" | while read line; do
-    echo -e "${YELLOW}  $line${NC}"
-done; then
+if npm install --production --no-audit --no-fund 2>&1; then
     sleep 1
     echo -e "${GREEN}✓ Dependencies installed${NC}"
 else
-    EXIT_CODE=$?
-    if [ $EXIT_CODE -eq 124 ]; then
-        echo -e "${RED}Error: Installation timed out after 2 minutes${NC}"
-        echo -e "${YELLOW}Tip: Check your internet connection or try again later${NC}"
-    else
-        echo -e "${RED}Error: Failed to install dependencies${NC}"
-        echo -e "${YELLOW}Tip: Try running 'cd ~/.fract/cli && npm install' manually${NC}"
-    fi
+    echo -e "${RED}Error: Failed to install dependencies${NC}"
+    echo -e "${YELLOW}Tip: Try running 'cd ~/.fract/cli && npm install' manually${NC}"
     exit 1
 fi
 
