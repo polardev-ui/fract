@@ -6,61 +6,61 @@ A modern package manager with beautiful terminal animations.
 
 Install fract using the following command:
 
-\`\`\`bash
+```bash
 curl -fsSL https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-\`\`\`
+```
 
 Or with wget:
 
-\`\`\`bash
+```bash
 wget -qO- https://raw.githubusercontent.com/polardev-ui/fract/main/install.sh | bash
-\`\`\`
+```
 
 ## Usage
 
 ### Install a package
 
-\`\`\`bash
+```bash
 fract install <package-name>
 # or
 fract i <package-name>
-\`\`\`
+```
 
 Install globally:
 
-\`\`\`bash
+```bash
 fract install <package-name> --global
 # or
 fract i <package-name> -g
-\`\`\`
+```
 
 ### Uninstall a package
 
-\`\`\`bash
+```bash
 fract uninstall <package-name>
 # or
 fract remove <package-name>
-\`\`\`
+```
 
 ### List installed packages
 
-\`\`\`bash
+```bash
 fract list
 # or
 fract ls
-\`\`\`
+```
 
 ### Search for packages
 
-\`\`\`bash
+```bash
 fract search <query>
-\`\`\`
+```
 
 ### Update a package
 
-\`\`\`bash
+```bash
 fract update <package-name>
-\`\`\`
+```
 
 ## Features
 
@@ -69,7 +69,7 @@ fract update <package-name>
 - Simple and intuitive commands
 - Local and global package support
 - Live status updates during installation
-- Package registry integration at [fract.vercel.app](https://fract.vercel.app)
+- Package registry integration at [fract-cli.vercel.app](https://fract-cli.vercel.app)
 
 ## Package Terminology
 
