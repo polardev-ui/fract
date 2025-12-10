@@ -18,7 +18,7 @@ NC='\033[0m' # No Color
 
 echo ""
 echo -e "${CYAN}╔══════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║${NC}  ${CYAN}fract${NC} installer                   ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC}  ${CYAN}fract${NC} installer                     ${CYAN}║${NC}"
 echo -e "${CYAN}╚══════════════════════════════════════╝${NC}"
 echo ""
 
