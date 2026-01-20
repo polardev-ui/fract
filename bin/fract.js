@@ -11,7 +11,7 @@ import { update } from "../lib/update.js"
 import { selfUpdate } from "../lib/self-update.js"
 import { checkForUpdates, showUpdateNotification } from "../lib/version-check.js"
 
-const version = "1.0.0"
+const version = "1.2.0"
 
 console.log(
   boxen(chalk.cyan.bold("fract") + chalk.gray(" v" + version) + "\n" + chalk.white("Modern package management"), {
