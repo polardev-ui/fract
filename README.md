@@ -101,7 +101,7 @@ iwr -useb https://raw.githubusercontent.com/polardev-ui/fract/main/uninstall.ps1
 - Simple and intuitive commands
 - Local and global package support
 - Live status updates during installation
-- Package registry integration at [fract.vercel.app](https://fract.vercel.app)
+- Package registry integration at [fract.dev](https://fract.dev)
 
 ## Package Terminology
 
@@ -119,5 +119,3 @@ Built by [Polar](https://github.com/polardev-ui)
 
 MIT
 ```
-
-```tsx file="" isHidden
